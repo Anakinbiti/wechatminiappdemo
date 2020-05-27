@@ -1,0 +1,9 @@
+<!--pages/start/index.wxml-->
+<view class="bg">
+  <image class="start-image" mode="aspectFill" src="../../images/start.jpg" animation="{{image_animation}}"/>
+  <view class="container">
+    <view class="start-title" animation="{{title_animation}}">
+      <text>疆界之外</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,60 @@
+.background .mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 0;
+}
+
+.userinfo {
+  display: flex;
+  /* color: #f8f8f8; */
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  display: block;
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+}
+
+.userinfo .nickname {
+  font-size: 32rpx;
+  margin-right: 20rpx;
+}
+
+.userinfo .subtitle {
+  line-height: 1;
+  color: #444;
+  font-size: 24rpx;
+  margin-top: 12rpx;
+}
+
+.userinfo .subtitle text {
+  margin-right: 20rpx;
+}
+
+.background {
+  padding: 40rpx;
+}
+
+.page-bd {
+  margin-bottom: 6rpx;
+}
+
+.tripbg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  z-index: 0;
+}
+
+.tab-content .action {
+  padding: 0rpx 10rpx;
+}

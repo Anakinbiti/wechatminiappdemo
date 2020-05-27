@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "行程查询",
+  "usingComponents": {
+    "wux-button": "../../dist/button/index",
+    "wux-filterbar": "../../dist/filterbar/index",
+    "wux-toast": "../../dist/toast/index",
+    "wux-prompt": "../../dist/prompt/index",
+    "wux-icon": "../../dist/icon/index"
+  },
+  "onReachBottomDistance": 50
+}

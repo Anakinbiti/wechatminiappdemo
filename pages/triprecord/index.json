@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "我的行程记录",
+  "usingComponents": {
+    "wux-white-space": "../../dist/white-space/index",
+    "wux-card": "../../dist/card/index",
+    "wux-wing-blank": "../../dist/wing-blank/index",
+    "wux-prompt": "../../dist/prompt/index"
+  }
+}

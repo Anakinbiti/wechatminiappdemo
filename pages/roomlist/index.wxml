@@ -1,0 +1,122 @@
+<!--pages/roomlist/index.wxml-->
+<wux-toast id="wux-toast" />
+<wux-popup visible="{{ popup }}" title="提交成功" content="行程资料已经提交">
+  <view slot="footer" class="popup__button" bindtap="onpopupClose">确认</view>
+</wux-popup>
+<wux-popup visible="{{ update_popup }}" title="更新成功" content="行程资料已经更新">
+  <view slot="footer" class="popup__button" bindtap="onpopupClose">确认</view>
+</wux-popup>
+<wux-calendar id="wux-calendar" />
+
+<view class="page">
+  <view class="page__hd_trip">
+    <view class="page__title">行程信息</view>
+    <view class="page__desc">请提供{{trip.start_date_str}} {{trip.lodge}}基地行程的信息，便于我们为您安排出行</view>
+  </view>
+  <view class="page__bd">
+    <wux-form id="wux-form" bind:change="onChange">
+      <view class='info-block'>
+        <wux-divider text="去程" />
+        <wux-cell-group>
+          <wux-cell hover-class="none">
+            <wux-field name="pretrip_flight_number" initialValue="{{pretrip_flight_number}}">
+              <wux-input label="去程航班号" placeholder="请输入航班号" />
+            </wux-field>
+          </wux-cell>
+          <wux-cell title="航班到达日期" extra="{{ pretrip_flight_date }}" bind:click="pretripflightDate"></wux-cell>
+          <wux-field name="pretrip_flight_time" initialValue="{{ pretrip_flight_time }}">
+            <wux-date-picker id="pretrip_flight_time" mode="time" bind:change="onTimePickerChange" minuteStep="5">
+              <wux-cell title="航班到达时间" is-link extra="{{ pretrip_flight_time }}"></wux-cell>
+            </wux-date-picker>
+          </wux-field>
+          <wux-cell title="需要预订机场酒店">
+            <wux-switch name="pretrip_hotel_switch" slot="footer" value="{{ pretrip_hotel }}" bind:change="onPretripHotelChange" />
+          </wux-cell>
+          <view class='hotel-booking' wx:if="{{pretrip_hotel}}">
+            <wux-field name="pretrip_hotel_choice" initialValue="{{ pretrip_hotel_choice }}">
+              <wux-popup-select options="{{ hotel_options }}" bind:change="onPretripHotelSelect">
+                <wux-cell title="选择酒店" is-link extra="{{ pretrip_hotel_choice }}"></wux-cell>
+              </wux-popup-select>
+            </wux-field>
+            <wux-cell title="入住时间" extra="{{ pretrip_hotel_date_in }}" bind:click="pretriphotelDatein"></wux-cell>
+            <wux-cell title="退房时间" extra="{{ pretrip_hotel_date_out }}" bind:click="pretriphotelDateout"></wux-cell>
+            <wux-field name="pretrip_hotel_room_type" initialValue="{{ pretrip_hotel_room_type }}">
+              <wux-popup-select options="{{ room_options }}" bind:change="onPretripHotelRoomSelect">
+                <wux-cell title="房间类型" is-link extra="{{ pretrip_hotel_room_type }}"></wux-cell>
+              </wux-popup-select>
+            </wux-field>
+            <wux-cell hover-class="none" wx:if="{{pretrip_hotel_room_type=='双人标间'||pretrip_hotel_room_type=='双人大床'}}">
+              <wux-field name="pretrip_hotel_roommate" initialValue="{{pretrip_hotel_roommate}}">
+                <wux-input label="室友" placeholder="室友姓名" />
+              </wux-field>
+            </wux-cell>
+          </view>
+          <wux-cell title="乘坐CMH班车去基地">
+            <wux-switch name="pretrip_shuttle_switch" slot="footer" value="{{ pretrip_shuttle }}" bind:change="onPretripShuttleChange" />
+          </wux-cell>
+        </wux-cell-group>
+      </view>
+      <view class='info-block' wx:if="{{trip.roomtype=='双人标间'||trip.roomtype=='双人大床'}}">
+        <wux-divider text="行程中" />
+        <wux-cell-group>
+          <wux-cell hover-class="none">
+            <wux-field name="lodge_roommate" initialValue="{{lodge_roommate}}">
+              <wux-input label="基地室友" placeholder="请输入室友姓名" />
+            </wux-field>
+          </wux-cell>
+        </wux-cell-group>
+      </view>
+      <view class='info-block'>
+        <wux-divider text="返程" />
+        <wux-cell-group>
+          <wux-cell hover-class="none">
+            <wux-field name="posttrip_flight_number" initialValue="{{posttrip_flight_number}}">
+              <wux-input label="返程航班号" placeholder="请输入航班号" />
+            </wux-field>
+          </wux-cell>
+          <wux-cell title="航班出发日期" extra="{{ posttrip_flight_date }}" bind:click="posttripflightDate"></wux-cell>
+          <wux-field name="posttrip_flight_time" initialValue="{{ posttrip_flight_time }}">
+            <wux-date-picker id="posttrip_flight_time" mode="time" bind:change="onTimePickerChange" minuteStep="5">
+              <wux-cell title="航班起飞时间" is-link extra="{{ posttrip_flight_time }}"></wux-cell>
+            </wux-date-picker>
+          </wux-field>
+          <wux-cell title="需要预订机场酒店">
+            <wux-switch name="posttrip_hotel_switch" slot="footer" value="{{ posttrip_hotel }}" bind:change="onPosttripHotelChange" />
+          </wux-cell>
+          <view class='hotel-booking' wx:if="{{posttrip_hotel}}">
+            <wux-field name="posttrip_hotel_choice" initialValue="{{ posttrip_hotel_choice }}">
+              <wux-popup-select options="{{ hotel_options }}" bind:change="onPosttripHotelSelect">
+                <wux-cell title="选择酒店" is-link extra="{{ posttrip_hotel_choice }}"></wux-cell>
+              </wux-popup-select>
+            </wux-field>
+            <wux-cell title="入住时间" extra="{{ posttrip_hotel_date_in }}" bind:click="posttriphotelDatein"></wux-cell>
+            <wux-cell title="退房时间" extra="{{ posttrip_hotel_date_out }}" bind:click="posttriphotelDateout"></wux-cell>
+            <wux-field name="posttrip_hotel_room_type" initialValue="{{ posttrip_hotel_room_type }}">
+              <wux-popup-select options="{{ room_options }}" bind:change="onPosttripHotelRoomSelect">
+                <wux-cell title="房间类型" is-link extra="{{ posttrip_hotel_room_type }}"></wux-cell>
+              </wux-popup-select>
+            </wux-field>
+            <wux-cell hover-class="none" wx:if="{{posttrip_hotel_room_type=='双人标间'||posttrip_hotel_room_type=='双人大床'}}">
+              <wux-field name="posttrip_hotel_roommate" initialValue="{{posttrip_hotel_roommate}}">
+                <wux-input label="室友" placeholder="室友姓名" />
+              </wux-field>
+            </wux-cell>
+          </view>
+          <wux-cell title="乘坐CMH班车回机场">
+            <wux-switch name="posttrip_shuttle_switch" slot="footer" value="{{ posttrip_shuttle }}" bind:change="onPosttripShuttleChange" />
+          </wux-cell>
+        </wux-cell-group>
+      </view>
+      <wux-cell-group title="行程备注">
+        <wux-cell hover-class="none">
+          <wux-field name="comment" initialValue="{{comment}}">
+            <wux-input placeholder="请注明特殊需求或者安排" />
+          </wux-field>
+        </wux-cell>
+      </wux-cell-group>
+      <view class="btn-area">
+        <wux-button loading="{{ submitting }}" block type="calm" bind:click="onSubmit">{{ buttontext }}</wux-button>
+      </view>
+    </wux-form>
+  </view>
+</view>

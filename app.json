@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/start/index",
+    "pages/index/index",
+    "pages/mytrip/index",
+    "pages/tripfinder/index",
+    "pages/tripplan/index",
+    "pages/cmhlodge/index",
+    "pages/lodgetrip/index",
+    "pages/bookform/index",
+    "pages/prebooking/index",
+    "pages/guestinfo/index",
+    "pages/webview/index",
+    "pages/manualbindguest/index",
+    "pages/roomlist/index",
+    "pages/triprecord/index",
+    "pages/admin/index"
+  ],
+  "tabBar": {
+    "color": "#80848f",
+    "selectedColor": "#11c1f3",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/home_200.png",
+        "selectedIconPath": "/images/home_selected_200.png"
+      },
+      {
+        "pagePath": "pages/mytrip/index",
+        "text": "我的行程",
+        "iconPath": "/images/calendar_200.png",
+        "selectedIconPath": "/images/calendar_selected_200.png"
+      },
+      {
+        "pagePath": "pages/tripfinder/index",
+        "text": "行程查询",
+        "iconPath": "/images/search_200.png",
+        "selectedIconPath": "/images/search_selected_200.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundColor": "#f8f8f8",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f8f8f8",
+    "navigationBarTitleText": "百万英尺俱乐部",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

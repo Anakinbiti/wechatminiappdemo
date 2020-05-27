@@ -1,0 +1,71 @@
+<!--pages/prebooking/index.wxml-->
+<wux-select id="wux-roomselect" />
+<wux-toast id="wux-toast" />
+<wux-popup visible="{{ confirmpreorder }}" title="提交意向报名" content="行程的具体时间，价格和机位情况将以10月下旬CMH的官方信息为准，在正式报名开启后我们会与您确认" closable="true" bind:close="closePopup">
+  <wux-button block type="calm" bindtap="confirmPopup">确认</wux-button>
+</wux-popup>
+
+<view class="page">
+  <view class="page__hd_form">
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_appmsg" hover-class="none">
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="trip-title">
+              <text class="trip-title-text">意向报名：{{ trip.lodge }}基地{{trip.trip_type}}行程</text>
+              <button class='share-btn' hover-class="hover" open-type='share'>
+                <wux-icon wux-class="icon" type="md-share" color="#11c1f3" size="22" />
+              </button>
+            </view>
+            <view class="weui-media-box__desc_tripfinder">{{ trip.date }}, {{trip.length}}天行程</view>
+            <view class="weui-media-box__info_tripfinder">
+              <view class="weui-media-box__info__meta_price">双人间税前价格: {{ trip.price }}加币</view>
+              <view class="weui-media-box__info__meta_space">机位数: {{ trip.guest }}</view>
+            </view>
+            <view class="bottom-bar" hover-class="bottom-tap" bindtap='tapLodgeIntro'>
+              <wux-icon wux-class="icon" type="ios-image" color='#11c1f3' size="22" />
+              <view class="guide">了解{{ trip.lodge }}基地</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class='guest-list-title' bindtap='addContact'>
+      <view class='title'>常用客人列表</view>
+      <wux-icon wux-class="icon" type="ios-add-circle-outline" size="24" />
+    </view>
+    <wux-cell-group>
+      <wux-prompt visible="{{ neterror }}" title="网络错误" buttons="{{reloadbutton}}" bind:click="reloadPage" />
+      <wux-prompt visible="{{ noguests }}" title=" 没有常用客人 " buttons="{{addbutton}}" bind:click="addContact" />
+      <wux-cell-group>
+        <block wx:for="{{ guests }}" wx:key="_id" wx:for-index="guestindex">
+          <wux-cell title="{{ item.name }}">
+            <wux-selectable slot="header" wux-class="checkbox" color="calm" value='{{guestindex}}' bind:change="onguestSelect" controlled checked="{{ item.intrip }}" />
+            <view slot="footer">
+              <wux-cell is-link data-roomtype="{{ item.roomtype }}" data-guestindex='{{guestindex}}' bind:click="onguestClick">
+                {{ item.roomtype }}
+              </wux-cell>
+            </view>
+          </wux-cell>
+        </block>
+      </wux-cell-group>
+    </wux-cell-group>
+    <view class="guest-list-title">
+      <view class='title'>备注</view>
+    </view>
+    <wux-cell-group>
+      <wux-cell hover-class="none">
+        <wux-input placeholder="请注明特殊需求" bind:blur="onComment" />
+      </wux-cell>
+    </wux-cell-group>
+    <view class="weui-btn-area">
+      <wux-button loading="{{ submitting }}" block type="calm" bind:click="formSubmit">{{ buttontext }}</wux-button>
+    </view>
+  </view>
+  <button class='service-btn' hover-class="hover" open-type='contact' show-message-card send-message-title="意向预定{{trip.lodge}}{{ trip.date }}开始的行程" send-message-path="/pages/prebooking/index?trip={{options}}">
+    <wux-icon class="btn-ico" wux-class="icon" type="ios-chatboxes" color="white" size="32" />
+    <text>行程咨询</text>
+  </button>
+</view>

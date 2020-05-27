@@ -1,0 +1,60 @@
+<!--pages/tripplan/index.wxml-->
+<view class='tripplan'>
+  <view class='plan-header'>
+    <wux-avatar class='hclogo' size="large" src="../../images/heliskichina.png" />
+    <view class='plan-title'>
+      <view class='h1'>{{ tripplan.title }}
+        <button class='share-btn' hover-class="hover" open-type='share'>
+          <wux-icon wux-class="icon" type="md-share" color="#11c1f3" size="22" />
+        </button>
+      </view>
+      <view class="detail">
+        <text>{{ tripplan.season }}</text>
+        <text>{{ tripplan.date }}</text>
+      </view>
+    </view>
+  </view>
+  <view class="plan-desc">{{ tripplan.desc }}</view>
+  <view class='plan'>
+    <block wx:if="{{ tripplan.trips }}" wx:for="{{ tripplan.trips }}" wx:for-item="trips" wx:key="tour_alias">
+      <view class='trip'>
+        <view class='trip-title'>
+          <text>{{trips.date}} {{trips.name}} @</text>
+          <text>{{trips.lodge}}</text>
+        </view>
+        <view class='trip-tag'>
+          <wux-tag wx:if="{{ trips.difficulty==1 }}" color="red">专家级难度</wux-tag>
+          <wux-tag wx:if="{{ trips.difficulty==2 }}" color="orange">高级难度</wux-tag>
+          <wux-tag wx:if="{{ trips.difficulty==3 }}" color="green">中级难度</wux-tag>
+          <wux-tag wx:if="{{ trips.difficulty==4 }}" color="green">订制难度</wux-tag>
+          <wux-tag wx:if="{{ trips.pace==1 }}" color="red">节奏飞快</wux-tag>
+          <wux-tag wx:if="{{ trips.pace==2 }}" color="orange">节奏适中</wux-tag>
+          <wux-tag wx:if="{{ trips.pace==3 }}" color="green">节奏轻松</wux-tag>
+          <wux-tag wx:if="{{ trips.pace==4 }}" color="green">订制节奏</wux-tag>
+          <wux-tag color="geekblue">{{trips.length}}天行程</wux-tag>
+          <wux-tag wx:if="{{ trips.trip_type!='中国周' }}" color="cyan">{{trips.trip_type}}</wux-tag>
+          <wux-tag wx:if="{{ trips.trip_type=='中国周' }}" color="#ef473a">中国周</wux-tag>
+        </view>
+        <view class='trip-content'>
+          <view class="photo-ctn">
+            <image mode='aspectFill' style="width: 100%; background-color: #eeeeee;" class="cover" src="{{trips.cover}}"></image>
+          </view>
+          <view class='wrap'>
+            <view class="text">{{ trips.desc }}</view>
+            <view class="guest-count">
+              <wux-icon wux-class="icon" type="md-people" size="22" />
+              <view class="count">
+                <text wx:if="{{ tripplan.type=='official' }}">已报名人数：</text>
+                <text wx:if="{{ tripplan.type=='pre-earlybird' }}">机位数：</text>{{ trips.guest }}</view>
+            </view>
+            <view class='action'>
+              <wux-button block bind:click="joinTrip" data-alias='{{trips.tour_alias}}' data-selection='{{trips.tour_selection}}' data-index="{{index}}" type="calm">我要加入！</wux-button>
+            </view>
+          </view>
+        </view>
+        <view class="sep"></view>
+      </view>
+    </block>
+  </view>
+
+</view>

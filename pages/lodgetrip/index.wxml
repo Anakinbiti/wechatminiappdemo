@@ -1,0 +1,27 @@
+<!--pages/lodgetrip/index.wxml-->
+<wux-toast id="wux-toast" />
+
+<view class="page" style="{{ pageStyle }}">
+  <view class="page__bd">
+    <wux-filterbar items="{{ items }}" bind:change="onChange" bind:open="onOpen" bind:close="onClose" />
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__bd">
+        <wux-prompt visible="{{ neterror }}" title="网络错误" buttons="{{reloadbutton}}" bind:click="reloadPage" />
+        <wux-prompt visible="{{ notrip }}" title="没有符合条件的行程" text="请修改筛选条件" />
+        <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{ tripdata }}" wx:key="_id">
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" data-tour_alias="{{ item.tour_alias }}" data-lodge="{{ item.lodge }}" data-trip_type="{{ item.trip_type }}" data-start_date="{{ item.start_date }}" data-end_date="{{ item.end_date }}" data-duration="{{ item.duration }}"
+            data-price="{{ item.price }}" data-price_type="{{ item.price_type }}" data-currency="{{ item.currency }}" data-spaces_available="{{ item.spaces_available }}" bindtap="ontripTap">
+            <view class="weui-media-box__title">{{ item.lodge }}{{item.trip_type}}</view>
+            <view class="weui-media-box__desc_tripfinder">{{ item.start_date }}至{{item.end_date}}, {{item.duration}}天行程</view>
+            <view class="weui-media-box__info_tripfinder">
+              <view class="weui-media-box__info__meta_price">{{ item.price_type }}: {{ item.price }}{{ item.currency }}</view>
+              <view class="weui-media-box__info__meta_space">机位数: {{ item.spaces_available }}</view>
+              <view wx:if="{{item.spaces_available==0}}" class="weui-media-box__info__waitlist">加入排队</view>
+              <view wx:else class="weui-media-box__info__join">马上报名</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

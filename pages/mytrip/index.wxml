@@ -1,0 +1,110 @@
+<wux-dialog id="wux-dialog" />
+<wux-toast id="wux-toast" />
+
+<view class="page">
+  <!-- 进入页面直接邀请客户授权的弹窗，目前使用opendata显示头像和昵称，不需要进入页面时候提醒，所以暂时注释掉
+  <wux-popup closable="{{true}}" maskClosable="{{false}}" visible="{{isShowAuthorizeWarning}}" title="申请获取昵称和头像" content="获取您的公开信息可以便于绑定您的直滑订单信息" bind:close="cancelAuthorize">
+    <wux-button block type="calm" open-type="getUserInfo" bindgetuserinfo="getAuthorize">确认</wux-button>
+  </wux-popup>
+-->
+
+  <wux-popup closable="{{true}}" maskClosable="{{false}}" visible="{{getwechattobind}}" title="申请获取微信昵称" content="使用微信昵称可以快速绑定客户信息" bind:close="cancelWechatBind">
+    <wux-button block type="calm" open-type="getUserInfo" bindgetuserinfo="getWechatBind">确认</wux-button>
+  </wux-popup>
+  <wux-notice-bar wx:if="{{show_noticebar}}" loop mode="link" action="" content="{{noticebar_content}}" bind:click="onNoticeClick">
+  </wux-notice-bar>
+  <view class="background" style="width: {{ windowWidth }}px; height: {{ windowWidth*0.25 }}px;">
+    <wux-row>
+      <wux-col span="3">
+        <view class="userinfo-avatar">
+          <open-data type="userAvatarUrl"></open-data>
+        </view>
+      </wux-col>
+      <wux-col span="9">
+        <view class='userinfo'>
+          <view>
+            <open-data type="userNickName" class="nickname"></open-data>
+            <wux-tag color="gold" wx:if="{{bind_cmhguest}}" bind:click="tapVertical">{{ user_info.verticalfeet }}英尺落差 ></wux-tag>
+            <wux-tag wx:if="{{!bind_cmhguest}}">暂无落差数据</wux-tag>
+          </view>
+          <view class="subtitle" wx:if="{{bind_cmhguest}}">
+            <text>客户编号{{user_info.cmhwhsid}}</text>
+            <text>已滑行程{{ user_info.tripcount }}个</text>
+          </view>
+          <view class="subtitle" wx:if="{{!bind_cmhguest}}">游客，暂无行程记录</view>
+        </view>
+      </wux-col>
+    </wux-row>
+
+  </view>
+  <view class="page-bd">
+    <wux-tabs controlled current="{{current_tab}}" theme="calm" bindchange="onTabsChange">
+      <wux-tab key="mytrip" title="我的行程"></wux-tab>
+      <wux-tab key="mybooking" title="待确认订单"></wux-tab>
+      <wux-tab key="mycontact" title="常用客人资料"></wux-tab>
+    </wux-tabs>
+    <view class='tab-content' wx:if="{{current_tab=='mytrip'}}">
+      <wux-prompt visible="{{ show_trip_prompt }}" title="{{ trip_prompt.title }}" text="{{ trip_prompt.text }}" buttons="{{ trip_prompt.buttons }}" bind:click="{{ trip_prompt.click }}" />
+      <wux-white-space size="small" />
+      <block wx:for="{{ trips }}" wx:key="trip_alias" wx:for-index="tripindex">
+        <wux-card full title="{{ item.lodge }}" extra="{{ item.trip_type }} " actions="{{ item.actions }}" bind:action="onAction" id='{{tripindex}}' thumb='{{item.trip_logo}}'>
+          <view slot="body">
+            <view wx:if="{{item.orderstatus=='订金交付'}}">尾款{{ item.paymentdue_str }}，截至{{item.fpdue_str}}</view>
+            <view wx:if="{{item.orderstatus=='位置确认'}}">订金{{ item.deposit_str }}，截至{{item.dpdue_str}}</view>
+            <view wx:if="{{item.lodge!='Valdez'&&(item.orderstatus=='位置确认'||item.orderstatus=='订金交付')}}">行程编号{{item.trip_alias}},已付定金{{item.dpactual_str}}</view>
+            <view wx:if="{{item.lodge=='Valdez'&&(item.orderstatus=='位置确认'||item.orderstatus=='订金交付')}}">已付定金{{item.dpactual_str}}</view>
+            <view>行程从{{item.start_date_str}}到{{item.end_date_str}}，{{item.roomtype}}</view>
+          </view>
+          <view slot="footer"></view>
+        </wux-card>
+        <wux-white-space size="small" />
+      </block>
+    </view>
+    <view class='tab-content' wx:if="{{current_tab=='mybooking'}}">
+      <wux-prompt visible="{{ booking.length==0 }}" title="{{ booking_prompt.title }}" text="{{ booking_prompt.text }}" />
+      <wux-white-space size="small" />
+      <block wx:for="{{ booking }}" wx:key="_id">
+        <wux-card full title="{{ item.trip.lodge }}" extra="{{ item.trip.trip_type }}">
+          <view slot="body">
+            <text>客人：</text>
+            <text wx:for="{{ item.intripguests }}" wx:key="_id">{{item.name}} </text>
+          </view>
+          <view slot="footer">{{item.trip.start_date}}至{{item.trip.end_date}}，{{ item.trip.price_type }}：{{ item.trip.price }}{{ item.trip.currency }}</view>
+        </wux-card>
+        <wux-white-space size="small" />
+      </block>
+      <view class='action'>
+        <wux-button block type="calm" bind:click='newBooking'>新的预订</wux-button>
+      </view>
+    </view>
+    <view class='tab-content' wx:if="{{current_tab=='mycontact'}}">
+      <wux-prompt id='addnew' visible="{{ guests.length==0 }}" title="{{ contact_prompt.title }}" text="{{ contact_prompt.text }}" />
+      <wux-white-space size="small" />
+      <wux-cell-group>
+        <block wx:for="{{ guests }}" wx:key="_id" wx:for-index="guestindex">
+          <wux-cell title="{{item.name}}" is-link label="{{item.emailvalue}}" extra="修改" bind:click='updateContact' id='{{guestindex}}'></wux-cell>
+        </block>
+      </wux-cell-group>
+      <view class='action'>
+        <wux-button block id='addnew' type="calm" bind:click='updateContact'>添加新的常用客人</wux-button>
+        <wux-button wx:if="{{openid=='oM4zj5JMp5t73kzKthB3mqUmxWPw'}}" block type="calm" bind:click='admin'>管理</wux-button>
+      </view>
+    </view>
+  </view>
+  <!--
+  <wux-tabbar controlled safeArea current="{{current}}" theme="calm" position="bottom" bindchange="onTabBarChange">
+    <wux-tabbar-item title="首页">
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+    <wux-tabbar-item title="我的行程">
+      <wux-icon wux-class="icon" type="ios-calendar" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-calendar" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+    <wux-tabbar-item title="行程查询">
+      <wux-icon wux-class="icon" type="ios-search" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-search" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+  </wux-tabbar>
+  -->
+</view>

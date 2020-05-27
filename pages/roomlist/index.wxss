@@ -1,0 +1,22 @@
+/* pages/roomlist/index.wxss */
+/* pages/guestinfo/index.wxss */
+
+.page__hd_trip {
+    padding: 10px;
+}
+
+.popup__button {
+    display: block;
+    flex: 1;
+    color: #11c1f3;
+    position: relative;
+}
+
+.page__bd .btn-area {
+  padding: 0rpx 10rpx;
+}
+
+.hotel-booking {
+  padding: 0rpx 20rpx;
+  z-index: -1;
+}

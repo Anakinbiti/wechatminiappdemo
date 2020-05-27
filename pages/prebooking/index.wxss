@@ -1,0 +1,129 @@
+/* pages/prebooking/index.wxss */
+
+
+.page__hd_form {
+  padding-bottom: 10px;
+}
+
+.trip-title {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.trip-title-text {
+  font-weight: 400;
+  font-size: 17px;
+  width: auto;
+}
+
+.share-btn {
+  width: 58rpx;
+  height: 52rpx;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 12rpx;
+  z-index: 99;
+}
+
+.share-btn::after {
+  border: 0;
+}
+
+.weui-media-box__desc_tripfinder {
+  margin-top: 15px;
+  color: #888;
+  font-size: 13px;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.weui-media-box__info_tripfinder {
+  margin-top: 15px;
+  padding-bottom: 5px;
+  font-size: 13px;
+  color: #888;
+  line-height: 1em;
+  list-style: none;
+  overflow: hidden;
+}
+
+.weui-media-box__info__meta_price {
+  float: left;
+  padding-right: 1em;
+  font-style: italic;
+}
+
+.weui-media-box__info__meta_space {
+  float: left;
+  padding-right: 1em;
+  font-style: italic;
+}
+
+.bottom-bar {
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  margin-top:15px;
+}
+
+.bottom-bar .guide {
+  line-height: 1;
+  color: #11c1f3;
+  margin: 8rpx 10rpx;
+}
+
+.bottom-tap {
+ opacity: 0.5;
+}
+
+.guest-list-title {
+  display: flex;
+  margin: 10rpx 20rpx;
+}
+
+.guest-list-title .title {
+  font-size: 32rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  margin-right: 10rpx;
+}
+
+.service-btn {
+  width: 120rpx;
+  height: 120rpx;
+  background-color: #11c1f3;
+  border-radius: 64rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 30rpx;
+  right: 10rpx;
+  font-size: 22rpx;
+  color: white;
+  z-index: 99;
+  padding: 10rpx;
+  opacity: 0.8;
+}
+
+.service-btn::after {
+  border: 0;
+}
+
+.btn-ico {
+  margin-bottom: -26rpx;
+}
+
+.hover {
+  opacity: 0.5;
+}

@@ -1,0 +1,23 @@
+{
+  "navigationBarTitleText": "我的行程",
+  "usingComponents": {
+    "wux-icon": "../../dist/icon/index",
+    "wux-badge": "../../dist/badge/index",
+    "wux-row": "../../dist/row/index",
+    "wux-col": "../../dist/col/index",
+    "wux-tag": "../../dist/tag/index",
+    "wux-white-space": "../../dist/white-space/index",
+    "wux-button": "../../dist/button/index",
+    "wux-card": "../../dist/card/index",
+    "wux-wing-blank": "../../dist/wing-blank/index",
+    "wux-dialog": "../../dist/dialog/index",
+    "wux-cell-group": "../../dist/cell-group/index",
+    "wux-cell": "../../dist/cell/index",
+    "wux-popup": "../../dist/popup/index",
+    "wux-prompt": "../../dist/prompt/index",
+    "wux-toast": "../../dist/toast/index",
+    "wux-tabs": "../../dist/tabs/index",
+    "wux-tab": "../../dist/tab/index",
+    "wux-notice-bar": "../../dist/notice-bar/index"
+  }
+}

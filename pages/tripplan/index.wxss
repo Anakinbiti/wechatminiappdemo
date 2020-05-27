@@ -1,0 +1,120 @@
+/* pages/tripplan/index.wxss */
+
+.tripplan {
+  padding: 40rpx 30rpx 0;
+}
+
+.tripplan .hclogo {
+  float: left;
+  margin-right: 20rpx;
+}
+
+.plan-header {
+  overflow: hidden;
+  display: flex;
+}
+
+.plan-title {
+  max-width: 100%;
+}
+
+.plan-title .h1 {
+  font-size: 40rpx;
+  line-height: 1;
+  color: #444;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.share-btn {
+  width: 58rpx;
+  height: 52rpx;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10rpx;
+  z-index: 99;
+}
+
+.share-btn::after {
+  border: 0;
+}
+
+.plan-title .detail {
+  line-height: 1;
+  color: #888;
+  font-size: 22rpx;
+}
+
+.plan-title .detail text {
+  padding-right: 20rpx;
+}
+
+.plan-desc{
+  margin-top: 36rpx;
+}
+
+.plan {
+  margin-top: 36rpx;
+}
+
+.trip .trip-title {
+  color: #444;
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 32rpx;
+}
+
+.trip .trip-tag {
+  margin: 10rpx 0rpx;
+}
+
+.trip .sep {
+  height: 36rpx;
+}
+
+.trip-content .photo-ctn {
+  position: relative;
+}
+
+.trip-content .cover {
+  vertical-align: bottom;
+}
+
+.trip-content .wrap {
+  background-color: #fff;
+  padding-bottom: 4rpx;
+}
+
+.trip-content .action {
+  margin: 0rpx 18rpx;
+}
+
+.trip-content .text {
+  padding: 10rpx 20rpx 0;
+  color: #5c5c5c;
+  word-break: break-word;
+}
+
+.trip-content .guest-count {
+  padding: 10rpx 18rpx 0rpx;
+  background-color: #fff;
+  overflow: hidden;
+  color: #999;
+  display: flex;
+}
+
+.trip-content .guest-count .count {
+  font-size: 24rpx;
+  color: #999;
+  height: 44rpx;
+  line-height: 44rpx;
+  margin-left: 18rpx;
+}

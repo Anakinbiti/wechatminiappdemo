@@ -1,0 +1,17 @@
+{
+  "navigationBarTitleText": "预订行程",
+  "usingComponents": {
+    "wux-cell-group": "../../dist/cell-group/index",
+    "wux-cell": "../../dist/cell/index",
+    "wux-selectable": "../../dist/selectable/index",
+    "wux-input": "../../dist/input/index",
+    "wux-calendar": "../../dist/calendar/index",
+    "wux-select": "../../dist/select/index",
+    "wux-button": "../../dist/button/index",
+    "wux-toast": "../../dist/toast/index",
+    "wux-popup": "../../dist/popup/index",
+    "wux-prompt": "../../dist/prompt/index",
+    "wux-icon": "../../dist/icon/index",
+    "wux-dialog": "../../dist/dialog/index"
+  }
+}

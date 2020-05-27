@@ -1,0 +1,13 @@
+<!--pages/triprecord/index.wxml-->
+
+<wux-prompt visible="{{ no_record }}" title="{{ prompt.title }}" text="{{ prompt.text }}" buttons="{{ prompt.buttons }}" bind:click="newBooking"/>
+<wux-white-space size="small" />
+<block wx:for="{{ triprecord }}" wx:key="_id">
+  <wux-card full title="{{item.start_date_str}}至{{item.end_date_str}}" extra="{{ item.lodge }}">
+    <view slot="body">
+      <text>{{ item.guest_name }}，滑行落差：{{ item.vertical_feet }}英尺（{{ item.vertical_meter }}米）</text>
+    </view>
+    <view slot="footer">行程编号：{{ item.trip_alias }}</view>
+  </wux-card>
+  <wux-white-space size="small" />
+</block>

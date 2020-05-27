@@ -1,0 +1,116 @@
+<!--pages/home/index.wxml-->
+<view class="page">
+  <swiper class="screen-swiper DotStyle?'square-dot'" bindchange="swiperChange" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+    <swiper-item wx:for="{{swiperList}}" wx:key="id" bindtap="swiperClick">
+      <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+      <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+    </swiper-item>
+  </swiper>
+  <view class="sub-title">直滑基地</view>
+  <scroll-view style="height: {{ windowWidth*1.67}}px;" class="page-bd">
+    <wux-row>
+      <wux-col span="4" bindtap="tapLodge" id="Adamants">
+        <wux-image wux-class="image" shape="thumbnail" mode="aspectFill" src="../../images/lodges/lodges1.jpg" loading="加载中..." />
+        <view class='lodge-title'>
+          <view class="text-white">Adamants</view>
+        </view>
+      </wux-col>
+      <wux-col span="4" bindtap="tapLodge" id="Bobbie Burns">
+        <wux-image wux-class="image" shape="thumbnail" mode="aspectFill" src="../../images/lodges/lodges2.jpg" loading="加载中..." />
+        <view class='lodge-title'>
+          <view class="text-white">Bobbie Burns</view>
+        </view>
+      </wux-col>
+      <wux-col span="4" bindtap="tapLodge" id="Bugaboos">
+        <wux-image wux-class="image" shape="thumbnail" mode="aspectFill" src="../../images/lodges/lodges3.jpg" loading="加载中..." />
+        <view class='lodge-title'>
+          <view class="text-white">Bugaboos</view>
+        </view>
+      </wux-col>
+    </wux-row>
+    <wux-row>
+      <wux-col span="4" bindtap="tapLodge" id="Cariboos">
+        <wux-image wux-class="image" shape="thumbnail" mode="aspectFill" src="../../images/lodges/lodges4.jpg" loading="加载中..." />
+        <view class='lodge-title'>
+          <view class="text-white">Cariboos</view>
+        </view>
+      </wux-col>
+      <wux-col span="4" bindtap="tapLodge" id="Galena">
+        <wux-image wux-class="image" shape="thumbnail" mode="aspectFill" src="../../images/lodges/lodges5.jpg" loading="加载中..." />
+        <view class='lodge-title'>
+          <view class="text-white">Galena</view>
+        </view>
+      </wux-col>
+      <wux-col span="4" bindtap="tapLodge" id="Gothics">
+        <wux-image wux-class="image" shape="thumbnail" mode="aspectFill" src="../../images/lodges/lodges6.jpg" loading="加载中..." />
+        <view class='lodge-title'>
+          <view class="text-white">Gothics</view>
+        </view>
+      </wux-col>
+    </wux-row>
+    <wux-row>
+      <wux-col span="4" bindtap="tapLodge" id="Kootenay">
+        <wux-image wux-class="image" shape="thumbnail" mode="aspectFill" src="../../images/lodges/lodges7.jpg" loading="加载中..." />
+        <view class='lodge-title'>
+          <view class="text-white">Kootenay</view>
+        </view>
+      </wux-col>
+      <wux-col span="4" bindtap="tapLodge" id="Monashees">
+        <wux-image wux-class="image" shape="thumbnail" mode="aspectFill" src="../../images/lodges/lodges8.jpg" loading="加载中..." />
+        <view class='lodge-title'>
+          <view class="text-white">Monashees</view>
+        </view>
+      </wux-col>
+      <wux-col span="4" bindtap="tapLodge" id="Revelstoke">
+        <wux-image wux-class="image" shape="thumbnail" mode="aspectFill" src="../../images/lodges/lodges9.jpg" loading="加载中..." />
+        <view class='lodge-title'>
+          <view class="text-white">Revelstoke</view>
+        </view>
+      </wux-col>
+    </wux-row>
+    <wux-row>
+      <wux-col span="4" bindtap="tapLodge" id="Big Horn">
+        <wux-image wux-class="image" shape="thumbnail" mode="aspectFill" src="../../images/lodges/lodges10.jpg" loading="加载中..." />
+        <view class='lodge-title'>
+          <view class="text-white">Big Horn</view>
+        </view>
+      </wux-col>
+      <wux-col span="4" bindtap="tapLodge" id="Nomads">
+        <wux-image wux-class="image" shape="thumbnail" mode="aspectFill" src="../../images/lodges/lodges11.jpg" loading="加载中..." />
+        <view class='lodge-title'>
+          <view class="text-white">Nomads</view>
+        </view>
+      </wux-col>
+      <wux-col span="4" bindtap="tapLodge" id="Valemount">
+        <wux-image wux-class="image" shape="thumbnail" mode="aspectFill" src="../../images/lodges/lodges12.jpg" loading="加载中..." />
+        <view class='lodge-title'>
+          <view class="text-white">Valemount</view>
+        </view>  
+      </wux-col>
+    </wux-row>
+    <wux-row>
+      <wux-col span="4" bindtap="tapLodge" id="Valdez">
+        <wux-image wux-class="image" shape="thumbnail" mode="aspectFill" src="../../images/lodges/lodges13.jpg" loading="加载中..." />
+        <view class='lodge-title'>
+          <view class="text-white">Valdez</view>
+        </view>  
+      </wux-col>
+    </wux-row>
+  </scroll-view>
+  <!--
+  <wux-tabbar controlled safeArea current="{{current}}" theme="calm" position="bottom" bindchange="onTabBarChange">
+    <wux-tabbar-item title="首页">
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+    <wux-tabbar-item title="我的行程">
+      <wux-icon wux-class="icon" type="ios-calendar" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-calendar" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+    <wux-tabbar-item title="行程查询">
+      <wux-icon wux-class="icon" type="ios-search" size="22" slot="icon-on" />
+      <wux-icon wux-class="icon" type="ios-search" size="22" slot="icon-off" />
+    </wux-tabbar-item>
+  </wux-tabbar>
+  -->
+</view>

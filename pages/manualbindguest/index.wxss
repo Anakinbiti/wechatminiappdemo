@@ -1,0 +1,9 @@
+/* pages/manualbindguest/index.wxss */
+
+.page__hd_bindguest {
+    padding: 10px;
+}
+
+.page__bd .btn-area {
+  padding: 0rpx 10rpx;
+}

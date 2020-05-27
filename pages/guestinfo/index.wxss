@@ -1,0 +1,30 @@
+/* pages/guestinfo/index.wxss */
+
+.page__hd_guest {
+    padding: 10px;
+    position: relative
+}
+
+.delete-button {
+  position: absolute;
+  height: 56rpx;
+  width: 56rpx;
+  top: 20rpx;
+  right: 20rpx;
+  z-index: 1;
+}
+
+.delete-button-tap {
+  opacity: 0.5;
+}
+
+.popup__button {
+    display: block;
+    flex: 1;
+    color: #11c1f3;
+    position: relative;
+}
+
+.page__bd .btn-area {
+  padding: 0rpx 10rpx;
+}

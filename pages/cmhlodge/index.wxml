@@ -1,0 +1,101 @@
+<!--pages/cmhlodge/index.wxml-->
+<wux-toast id="wux-toast" />
+
+<wux-popup position="center" title="相关游记" visible="{{ tour_popup }}" closable="true" bind:close="onClose">
+  <wux-cell-group>
+    <wux-cell wx:for="{{lodge.tour}}" wx:key="name" title="{{item.name}}" isLink url="../webview/index?url={{item.url}}"></wux-cell>
+  </wux-cell-group>
+</wux-popup>
+
+<view class='lodge'>
+  <view class='lodge-header'>
+    <image class='cmhlogo' mode='aspectFit' src="{{ lodge_logo }}"></image>
+    <view class='lodge-title'>
+      <view class="name">
+        <text class="wux-text--uppercase">{{lodge.name}}</text>
+      </view>
+      <view class='h1'>
+        <text>{{lodge.title_norm}}</text>
+        <text style='font-weight:bold'>{{lodge.title_bold}}</text>
+        <button class='share-btn' hover-class="hover" open-type='share'>
+          <wux-icon wux-class="icon" type="md-share" color="#11c1f3" size="22" />
+        </button>
+      </view>
+    </view>
+  </view>
+  <view class='lodge-tag'>
+    <wux-tag wx:if="{{ lodge.difficulty==1 }}" color="#ef473a">专家级难度</wux-tag>
+    <wux-tag wx:if="{{ lodge.difficulty==2 }}" color="#ffc900">高级难度</wux-tag>
+    <wux-tag wx:if="{{ lodge.difficulty==3 }}" color="#33cd5f">中级难度</wux-tag>
+    <wux-tag wx:if="{{ lodge.difficulty==4 }}" color="#33cd5f">订制难度</wux-tag>
+    <wux-tag wx:if="{{ lodge.pace==1 }}" color="#ef473a">节奏飞快</wux-tag>
+    <wux-tag wx:if="{{ lodge.pace==2 }}" color="#ffc900">节奏适中</wux-tag>
+    <wux-tag wx:if="{{ lodge.pace==3 }}" color="#33cd5f">节奏轻松</wux-tag>
+    <wux-tag wx:if="{{ lodge.pace==4 }}" color="#33cd5f">订制节奏</wux-tag>
+    <wux-tag color="#888">{{lodge.terrain}}</wux-tag>
+    <wux-tag color="#2db7f5">{{lodge.capacity}}</wux-tag>
+  </view>
+  <view class='lodge-content'>
+    <image mode='aspectFill' style="width: 100%; background-color: #eeeeee;" class="cover" src="{{lodge.cover}}"></image>
+    <view class='hlbackground'>
+      <wux-row>
+        <wux-col span="6">
+          <view class="highlight">
+            <image class='ico' mode='aspectFit' src="../../images/snowflake.png"></image>
+            <view class='keyword'>
+              <text>年平均降雪量:{{lodge.snowfall}}</text>
+            </view>
+          </view>
+        </wux-col>
+        <wux-col span="6">
+          <view class="highlight">
+            <image class='ico' mode='aspectFit' src="../../images/mountain.png"></image>
+            <view class='keyword'>
+              <text>滑雪海拔:{{lodge.altitude}}</text>
+            </view>
+          </view>
+        </wux-col>
+      </wux-row>
+      <wux-row>
+        <wux-col span="6">
+          <view class="highlight">
+            <image class='ico' mode='aspectFit' src="../../images/compass.png"></image>
+            <view class='keyword'>
+              <text>可滑区域:{{lodge.skiable_area}}</text>
+            </view>
+          </view>
+        </wux-col>
+        <wux-col span="6">
+          <view class="highlight">
+            <image class='ico' mode='aspectFit' src="../../images/tracks.png"></image>
+            <view class='keyword'>
+              <text>滑行线路:{{lodge.runs}}</text>
+            </view>
+          </view>
+        </wux-col>
+      </wux-row>
+    </view>
+    <view class='wrap'>
+      <view class="text">{{ lodge.desc }}</view>
+      <wux-row wx:if="{{show_guide}}">
+        <wux-col span="6">
+          <view class="bottom-bar" hover-class="bottom-tap" bindtap='tapGuide'>
+            <wux-icon wux-class="icon" type="ios-book" color='#11c1f3' size="22" />
+            <view class="guide">行程攻略</view>
+          </view>
+        </wux-col>
+        <wux-col span="6">
+          <view class="bottom-bar" hover-class="bottom-tap" bindtap='tapTour'>
+            <wux-icon wux-class="icon" type="ios-images" color='#11c1f3' size="22" />
+            <view class="guide">相关游记</view>
+          </view>
+        </wux-col>
+      </wux-row>
+      <view class='action'>
+        <wux-button block bind:click="findTrip" data-alias='{{lodge.name}}' type="calm">
+          <wux-icon type="ios-search" size="16" /> 查找
+          <text class="wux-text--uppercase">{{lodge.name}}</text>的行程</wux-button>
+      </view>
+    </view>
+  </view>
+</view>

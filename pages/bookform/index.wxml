@@ -1,0 +1,82 @@
+<!--pages/bookform/index.wxml-->
+<wux-select id="wux-roomselect" />
+<wux-toast id="wux-toast" />
+<wux-dialog id="wux-dialog" />
+<wux-popup visible="{{ confirmwaitlist }}" title="当前机位数不足" content="目前没有足够的机位，您可以加入等待名单，在有机位时我们会第一时间联系您" closable="true" bind:close="closePopup">
+  <wux-button block type="calm" bindtap="confirmPopup">加入等待名单</wux-button>
+</wux-popup>
+
+<view class="page">
+  <view class="page__hd_form">
+    <view class="weui-panel__bd">
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-media-box weui-media-box_appmsg" hover-class="none">
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="trip-title">
+              <text class="trip-title-text">正在预订：{{ trip.lodge }}基地{{trip.trip_type}}行程</text>
+              <button class='share-btn' hover-class="hover" open-type='share'>
+                <wux-icon wux-class="icon" type="md-share" color="#11c1f3" size="22" />
+              </button>
+            </view>
+            <view class="weui-media-box__desc_tripfinder">{{ trip.start_date }}至{{trip.end_date}}, {{trip.duration}}天行程，行程编号{{trip.tour_alias}}</view>
+            <view class="weui-media-box__info_tripfinder">
+              <view class="weui-media-box__info__meta_price">双人间{{ trip.price_type }}: {{ trip.price }}{{ trip.currency }}</view>
+              <view class="weui-media-box__info__meta_space">机位数: {{ trip.spaces_available }}</view>
+            </view>
+            <view class="bottom-bar" hover-class="bottom-tap" bindtap='tapLodgeIntro'>
+              <wux-icon wux-class="icon" type="ios-image" color='#11c1f3' size="22" />
+              <view class="guide">了解{{ trip.lodge }}基地</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class='guest-list-title' bindtap='addContact'>
+      <view class='title'>常用客人列表</view>
+      <wux-icon wux-class="icon" type="ios-add-circle-outline" color="#11c1f3" size="24" />
+    </view>
+    <wux-cell-group>
+      <wux-prompt visible="{{ neterror }}" title="网络错误" buttons="{{reloadbutton}}" bind:click="reloadPage" />
+      <wux-prompt visible="{{ noguests }}" title=" 没有常用客人 " buttons="{{addbutton}}" bind:click="addContact" />
+      <wux-cell-group>
+        <block wx:for="{{ guests }}" wx:key="_id" wx:for-index="guestindex">
+          <wux-cell title="{{ item.name }}">
+            <wux-selectable slot="header" wux-class="checkbox" color="calm" value='{{guestindex}}' bind:change="onguestSelect" controlled checked="{{ item.intrip }}" />
+            <view slot="footer">
+              <wux-cell is-link data-roomtype="{{ item.roomtype }}" data-guestindex='{{guestindex}}' bind:click="onguestClick">
+                {{ item.roomtype }}
+              </wux-cell>
+            </view>
+          </wux-cell>
+        </block>
+      </wux-cell-group>
+    </wux-cell-group>
+    <view class="guest-list-title">
+      <view class='title'>备注</view>
+    </view>
+    <wux-cell-group>
+      <wux-cell hover-class="none">
+        <wux-input placeholder="请注明特殊需求" bind:blur="onComment" />
+      </wux-cell>
+    </wux-cell-group>
+    <view class="guest-list-title">
+      <view class='title'>推荐人{{ngc_to_name}}</view>
+    </view>
+    <wux-cell-group>
+      <wux-cell hover-class="none">
+        <wux-input placeholder="请填写推荐人的客户编号(00开头的8位数字)" controlled value="{{ngc_to_whsid}}" type="number" maxlength="8" bind:change="onNgcChange" bind:focus="onNgcFocus" error="{{ whsid_error }}" bind:blur="onNgcBlur" bind:error="onNgcError"/>
+      </wux-cell>
+    </wux-cell-group>
+    <view class="btn-area">
+      <form report-submit="{{true}}" bindsubmit="formSubmit">
+        <button class="submit-button" loading="{{ submitting }}" form-type="submit" hover-class="submit-button-hover">{{ buttontext }}</button>
+      </form>
+    </view>
+  </view>
+  <button class='service-btn' hover-class="hover" open-type='contact' show-message-card send-message-title="预定{{trip.lodge}}{{trip.trip_type}} {{ trip.start_date }}开始的行程" send-message-path="/pages/bookform/index?trip={{options}}">
+    <wux-icon class="btn-ico" wux-class="icon" type="ios-chatboxes" color="white" size="32" />
+    <text>行程咨询</text>
+  </button>
+</view>

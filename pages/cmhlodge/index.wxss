@@ -1,0 +1,134 @@
+/* pages/cmhlodge/index.wxss */
+
+.lodge {
+  padding: 40rpx 30rpx 0;
+}
+
+.lodge .cmhlogo {
+  float: left;
+  margin-right: 20rpx;
+  height: 96rpx;
+  width: 96rpx;
+}
+
+.lodge-header {
+  overflow: hidden;
+  display: flex;
+}
+
+.lodge-title {
+  max-width: 100%;
+}
+
+.lodge-title .h1 {
+  font-size: 40rpx;
+  line-height: 1;
+  color: #444;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.lodge-title .name {
+  line-height: 1;
+  color: #444;
+  font-size: 22rpx;
+  margin: 8rpx 0rpx;
+}
+
+.lodge-title .h1 text {
+  padding-right: 10rpx;
+}
+
+.share-btn {
+  width: 58rpx;
+  height: 52rpx;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10rpx;
+  z-index: 99;
+}
+
+.share-btn::after {
+  border: 0;
+}
+
+.lodge .lodge-tag {
+  margin: 10rpx 0rpx;
+}
+
+.lodge-content {
+  margin-top: 36rpx;
+}
+
+.lodge-content .photo-ctn {
+  position: relative;
+}
+
+.lodge-content .cover {
+  vertical-align: bottom;
+}
+
+.lodge-content .wrap {
+  background-color: #fff;
+  padding-bottom: 4rpx;
+  margin-bottom: 10rpx;
+}
+
+.lodge-content .action {
+  margin: 0rpx 18rpx;
+}
+
+.lodge-content .text {
+  padding: 10rpx 20rpx 0;
+  color: #5c5c5c;
+  word-break: break-word;
+}
+
+.hlbackground {
+  background-color: #f8f8f8;
+}
+
+.highlight {
+  overflow: hidden;
+  display: flex;
+  padding: 10rpx 20rpx;
+}
+
+.highlight .ico {
+  float: left;
+  margin-right: 10rpx;
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.highlight .keyword {
+  line-height: 1;
+  color: #999;
+  font-size: 24rpx;
+  margin: 8rpx 0rpx;
+}
+
+.lodge-content .bottom-bar {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  margin:20rpx 5rpx 0rpx 20rpx;
+}
+
+.lodge-content .guide {
+  line-height: 1;
+  color: #11c1f3;
+  margin: 8rpx 10rpx;
+}
+
+.bottom-tap {
+ opacity: 0.5;
+}

@@ -1,0 +1,24 @@
+<!--pages/manualbindguest/index.wxml-->
+<wux-toast id="wux-toast" />
+<wux-dialog id="wux-dialog" />
+
+<view class="page">
+  <view class="page__hd_bindguest">
+    <view class="page__title">通过姓名和邮箱绑定</view>
+    <view class="page__desc">请提供在报名参加CMH直升机滑雪行程时使用的姓名和邮箱</view>
+  </view>
+  <view class="page__bd">
+    <wux-cell-group>
+      <wux-cell hover-class="none">
+        <wux-input label="姓名" controlled placeholder="请输入中文姓名" value="{{ name }}" bind:blur="onnameBlur" bind:focus="onnameFocus" error="{{ nameerror }}" bind:change="onnameChange" bind:error="onEmpty" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input label="邮箱" placeholder="接收预订确认邮件的邮箱" value="{{ emailvalue }}" controlled error="{{ emailerror }}" bind:change="onemailChange" bind:focus="onemailFocus" bind:blur="onemailBlur" bind:confirm="onemailConfirm" bind:clear="onemailClear" bind:error="onemailError"
+        />
+      </wux-cell>
+    </wux-cell-group>
+    <view class="btn-area">
+      <wux-button loading="{{ submitting }}" block type="calm" bind:click="onSubmit">{{ buttontext }}</wux-button>
+    </view>
+  </view>
+</view>

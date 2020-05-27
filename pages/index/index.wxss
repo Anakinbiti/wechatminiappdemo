@@ -1,0 +1,53 @@
+/* pages/home/index.wxss */
+
+.swiper-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: unset;
+  position: relative;
+}
+
+.swiper-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10%;
+  line-height: 60rpx;
+  text-align: center;
+}
+
+.page-bd {
+  margin-bottom: 6rpx;
+}
+
+.button-wrap {
+  margin: -10rpx 10rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  color: #888;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  margin: 0rpx 10rpx;
+}
+
+.lodge-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0%;
+  line-height: 40rpx;
+  text-align: center;
+  background: linear-gradient(to bottom, transparent, rgba(155, 155, 153, 0.692));
+  z-index: 99;
+}
+
+.image {
+  width: 100% !important;
+  height: auto !important;
+  padding-bottom: 100% !important;
+}

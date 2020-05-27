@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "组队信息",
+  "usingComponents": {
+    "wux-avatar": "../../dist/avatar/index",
+    "wux-tag": "../../dist/tag/index",
+    "wux-icon": "../../dist/icon/index",
+    "wux-button": "../../dist/button/index"
+  }
+}

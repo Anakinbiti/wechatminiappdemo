@@ -1,0 +1,60 @@
+<!--pages/guestinfo/index.wxml-->
+<wux-toast id="wux-toast" />
+<wux-dialog id="wux-dialog" />
+<wux-popup visible="{{ popup }}" title="提交成功" content="客户资料已经提交">
+  <view slot="footer" class="popup__button" bindtap="onpopupClose">确认</view>
+</wux-popup>
+
+<view class="page">
+  <view class="page__hd_guest">
+    <view class="page__title">
+      <text>客户信息</text>
+      <view class="delete-button" hover-class="delete-button-tap" wx:if="{{show_delete}}" bindtap="deleteContact">
+        <wux-icon wux-class="icon" type="ios-trash" color="#444" size="28" />
+      </view>
+    </view>
+    <view class="page__desc">由于直升机滑雪需要规划并且控制飞行总重量，请您提供准确的体重等个人信息</view>
+  </view>
+  <view class="page__bd">
+    <wux-cell-group>
+      <wux-cell hover-class="none">
+        <wux-input label="姓名" controlled placeholder="请输入客人的姓名" value="{{ name }}" bind:blur="onnameBlur" bind:focus="onnameFocus" error="{{ nameerror }}" bind:change="onnameChange" bind:error="onEmpty" />
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input label="邮箱" placeholder="用于预订确认（重要！）" value="{{ emailvalue }}" controlled error="{{ emailerror }}" bind:change="onemailChange" bind:focus="onemailFocus" bind:blur="onemailBlur" bind:confirm="onemailConfirm" bind:clear="onemailClear" bind:error="onemailError"
+        />
+      </wux-cell>
+      <wux-cell title="性别" hover-class="none">
+        <radio-group slot="footer" class="radio-group" bindchange="genderChange">
+          <label class="radio" wx:for="{{gendervalue}}" wx:key="type">
+            <radio color="#11c1f3" value="{{item.type}}" checked="{{item.checked}}" /> {{item.value}}
+          </label>
+        </radio-group>
+      </wux-cell>
+      <picker mode="date" value="{{birthday}}" start="1940-01-01" end="2015-01-01" bindchange="DateChange">
+        <view class="picker">
+          <wux-cell title="生日" extra="{{birthday}}">
+            <view slot="footer">出生日期</view>
+          </wux-cell>
+        </view>
+      </picker>
+      <wux-cell hover-class="none">
+        <wux-input label="身高" placeholder="请输入客人的身高" controlled value="{{height}}" type="number" maxlength="3" bind:blur="onheightBlur" bind:focus="onheightFocus" error="{{ heighterror }}" bind:change="onheightChange" bind:error="onEmpty">
+          <view slot="footer" style="margin-left: 5px">厘米</view>
+        </wux-input>
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input label="体重" placeholder="请输入客人的体重" controlled value="{{weight}}" type="number" maxlength="3" bind:blur="onweightBlur" bind:focus="onweightFocus" error="{{ weighterror }}" bind:change="onweightChange" bind:error="onEmpty">
+          <view slot="footer" style="margin-left: 5px">公斤</view>
+        </wux-input>
+      </wux-cell>
+      <wux-cell hover-class="none">
+        <wux-input label="手机号码" placeholder="请输入手机号码" value="{{ mobilevalue }}" controlled error="{{ mobileerror }}" type="number" bind:change="onChange" bind:focus="onFocus" bind:blur="onBlur" bind:confirm="onConfirm" bind:clear="onClear" bind:error="onError"
+        />
+      </wux-cell>
+    </wux-cell-group>
+    <view class="btn-area">
+      <wux-button loading="{{ submitting }}" block type="calm" bind:click="onSubmit">{{ buttontext }}</wux-button>
+    </view>
+  </view>
+</view>
